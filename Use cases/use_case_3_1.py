@@ -67,12 +67,12 @@ popular_prod_map = popular_prod_map.drop('product_category_name', 'product_name_
 										
 popular_prod_map.count()
 
-windowSpec = Window.partitionBy('state_name').orderBy(col('number_of_products').desc())
+windowSpec = Window.partitionBy('state_name').orderBy(col('amount_of_orders').desc())
 
 popular_prod_map = popular_prod_map.groupBy('state_name', 'product_category_name_english') \
-                                    .agg(count('product_category_name_english').alias('number_of_products')) \
+                                    .agg(count('product_category_name_english').alias('amount_of_orders')) \
                                     .withColumn('rank', rank().over(windowSpec)) \
-                                    .select('state_name', 'product_category_name_english', 'number_of_products', 'rank') \
+                                    .select('state_name', 'product_category_name_english', 'amount_of_orders', 'rank') \
                                     .where(col('rank') == 1)
 									
 df = popular_prod_map.toPandas()
@@ -83,7 +83,7 @@ fig = px.choropleth(
  geojson = Brazil,
  color = 'product_category_name_english',
  hover_name = 'product_category_name_english',
- hover_data =["state_name","number_of_products"],
+ hover_data =["state_name","amount_of_orders"],
 )
 fig.update_geos(fitbounds = "locations", visible = False)
 fig.update_layout(legend_title = 'Product category names')
