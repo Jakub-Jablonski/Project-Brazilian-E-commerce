@@ -116,7 +116,7 @@ task_find_most_popular_categories_per_state= SparkSubmitOperator(
     conn_id="spark_default",
     verbose=1,
     conf={"spark.master":spark_master},
-    application_args=[order_items_file,orders_file,products_file,product_category_name_transaltion_file,customers_file,states_file],
+    application_args=[order_items_file,orders_file,products_file,product_category_name_transaltion_file,customers_file,states_file,brazilgeo_file],
     dag=dag
 )
 
