@@ -38,6 +38,7 @@ products_file = "/usr/local/spark/resources/data/commerce/olist_products_dataset
 sellers_file = "/usr/local/spark/resources/data/commerce/olist_sellers_dataset.csv"
 states_file = "/usr/local/spark/resources/data/commerce/states_name.csv"
 regions_file = "/usr/local/spark/resources/data/commerce/region_names.csv"
+brazilgeo_file = "/usr/local/spark/resources/data/commerce/brazilgeo.json"
 
 
 
@@ -70,7 +71,7 @@ task_max_spending = SparkSubmitOperator(
     conn_id="spark_default",
     verbose=1,
     conf={"spark.master":spark_master},
-    application_args=[orders_file,order_payments_file,customers_file,states_file],
+    application_args=[orders_file,order_payments_file,customers_file,states_file,order_items_file,products_file,product_category_name_transaltion_file,brazilgeo_file],
     dag=dag
 )
 
@@ -108,6 +109,18 @@ task_top2_highest_earining_sellers = SparkSubmitOperator(
 )
 
 
+task_find_most_popular_categories_per_state= SparkSubmitOperator(
+    task_id="find_most_popular_categories_per_state",
+    application="/usr/local/spark/app/Project/use_case_31.py", # Spark application path created in airflow and spark cluster
+    name=spark_app_name,
+    conn_id="spark_default",
+    verbose=1,
+    conf={"spark.master":spark_master},
+    application_args=[order_items_file,orders_file,products_file,product_category_name_transaltion_file,customers_file,states_file,brazilgeo_file],
+    dag=dag
+)
+
+
 task_html_raport = PythonOperator(
     task_id="create_html_raport",
     python_callable = merge_html,
@@ -122,5 +135,5 @@ task_html_raport = PythonOperator(
 
 
 
-[task_deleyed_orders, task_top3_products_category, task_max_spending, task_top2_highest_earining_sellers] >> task_html_raport 
+[task_deleyed_orders, task_top3_products_category, task_max_spending, task_find_most_popular_categories_per_state, task_top2_highest_earining_sellers] >> task_html_raport 
 
