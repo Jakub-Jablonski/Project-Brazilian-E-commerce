@@ -156,7 +156,7 @@ html_string = '''
             <h1 style='text-align: center;'>Case 3</h1> 
             <h2 style='text-align: center;'>Maximum spending customers with states for every month of last year</h2>
             ''' + use_case_3_plot + ''' 
-            <h2 style='text-align: center;'>Maximum spending customers by month and year</h2>
+            <h2 style='text-align: center;'>Maximum spending customers by state and year together with months</h2>
             ''' + use_case_3_table + ''' 
     </body>
 </html>'''

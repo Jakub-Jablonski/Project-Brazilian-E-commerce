@@ -147,7 +147,7 @@ html_string = '''
             <h1 style='text-align: center;'>Case 2</h1> 
             <h2 style='text-align: center;'>Top 3 selling products of each category</h2>
             ''' + use_case_2_plot + '''
-            <h2 style='text-align: center;'>Top 3 selling categories with months</h2>
+            <h2 style='text-align: center;'>Top 3 best selling months for each category</h2>
             ''' + use_case_2_table + ''' 
     </body>
 </html>'''
