@@ -92,7 +92,7 @@ fig.update_xaxes(categoryorder='array', categoryarray=arr)
 fig.update_xaxes(title = 'Month')
 fig.update_yaxes(title = 'Money spent')
 fig.update_layout(legend_title = 'State')
-fig.show()
+#fig.show()
 # html file
 #fig.write_html('use_case_3_plot.html')
 use_case_3_plot = fig.to_html()
@@ -135,7 +135,7 @@ fig.update_layout(
 )
 fig.data[0]['columnwidth'] = [30, 10];fig.update_layout(autosize=True)
 #fig.update_layout(width=900, height=500)
-fig.show()
+#fig.show()
 #fig.write_html('table_use_case_3.html')
 use_case_3_table = fig.to_html()
 

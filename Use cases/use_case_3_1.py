@@ -87,7 +87,7 @@ fig = px.choropleth(
 )
 fig.update_geos(fitbounds = "locations", visible = False)
 fig.update_layout(legend_title = 'Product category names')
-fig.show()
+#fig.show()
 use_case_3_1_plot = fig.to_html()
 
 html_string = '''

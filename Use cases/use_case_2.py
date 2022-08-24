@@ -70,7 +70,7 @@ fig.update_xaxes(type='category')
 fig.update_xaxes(title = 'Name of the product category')
 fig.update_yaxes(title = 'Number of units sold')
 fig.update_layout(legend_title = 'Rank')
-fig.show()
+#fig.show()
 # html file
 #fig.write_html('use_case_2_plot.html')
 use_case_2_plot = fig.to_html()
@@ -126,7 +126,7 @@ fig.update_layout(
 layout = dict(autosize=True)
 fig.update_layout(autosize=True)
 #fig.update_layout(width=980, height=500)
-fig.show()
+#fig.show()
 #fig.write_html('table_use_case_2.html')
 use_case_2_table = fig.to_html()
 
