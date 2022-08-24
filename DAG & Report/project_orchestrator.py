@@ -57,8 +57,8 @@ default_args = {
 }
 
 dag = DAG(
-        dag_id="Buisness_Analysis_DAG", 
-        description="This DAG runs four Spark jobs corresponding the analyzed cases and then creates HTML raport for buisness purposes",
+        dag_id="Business_Analysis_DAG", 
+        description="This DAG runs five Spark jobs corresponding the analyzed cases and then creates HTML raport for business purposes",
         default_args=default_args, 
         schedule_interval= '0 12 1 1 *'
 )
@@ -82,7 +82,7 @@ task_top3_products_category = SparkSubmitOperator(
     conn_id="spark_default",
     verbose=1,
     conf={"spark.master":spark_master},
-    application_args=[order_items_file,products_file,product_category_name_transaltion_file,orders_file],
+    application_args=[order_items_file,products_file,product_category_name_transaltion_file,orders_file,customers_file,states_file,brazilgeo_file],
     dag=dag
 )
 
@@ -109,16 +109,16 @@ task_top2_highest_earining_sellers = SparkSubmitOperator(
 )
 
 
-task_find_most_popular_categories_per_state= SparkSubmitOperator(
-    task_id="find_most_popular_categories_per_state",
-    application="/usr/local/spark/app/Project/use_case_31.py", # Spark application path created in airflow and spark cluster
-    name=spark_app_name,
-    conn_id="spark_default",
-    verbose=1,
-    conf={"spark.master":spark_master},
-    application_args=[order_items_file,orders_file,products_file,product_category_name_transaltion_file,customers_file,states_file,brazilgeo_file],
-    dag=dag
-)
+# task_find_most_popular_categories_per_state= SparkSubmitOperator(
+    # task_id="find_most_popular_categories_per_state",
+    # application="/usr/local/spark/app/Project/use_case_31.py", # Spark application path created in airflow and spark cluster
+    # name=spark_app_name,
+    # conn_id="spark_default",
+    # verbose=1,
+    # conf={"spark.master":spark_master},
+    # application_args=[order_items_file,orders_file,products_file,product_category_name_transaltion_file,customers_file,states_file,brazilgeo_file],
+    # dag=dag
+# )
 
 
 task_html_raport = PythonOperator(
@@ -135,5 +135,5 @@ task_html_raport = PythonOperator(
 
 
 
-[task_deleyed_orders, task_top3_products_category, task_max_spending, task_find_most_popular_categories_per_state, task_top2_highest_earining_sellers] >> task_html_raport 
+[task_deleyed_orders, task_top3_products_category, task_max_spending, task_top2_highest_earining_sellers] >> task_html_raport 
 
