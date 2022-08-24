@@ -126,7 +126,7 @@ html_string = '''
         <h1 style='text-align: center;'>Case 1</h1>      
         <!-- *** Section 1 *** --->
         
-            <h2 style='text-align: center;'>Customers whose package was delayed</h2>
+            <h2 style='text-align: center;'>Customers whose package were delayed</h2>
             ''' + df_orders_delayed + '''
                
                <h2 style='text-align: center;'>Delay rate of packages</h2>
