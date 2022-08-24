@@ -2,7 +2,7 @@ from pyspark import SparkContext
 from pyspark.sql import SparkSession
 import pyspark.sql.functions as F
 from IPython.display import display, HTML
-display(HTML("<style>pre {white-space: pre !important; }</style>"))
+
 spark = SparkSession \
     .builder \
     .getOrCreate()
