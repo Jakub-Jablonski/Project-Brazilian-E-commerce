@@ -1,10 +1,6 @@
 from pyspark import SparkContext
 from pyspark.sql import SparkSession
 import pyspark.sql.functions as F
-<<<<<<< HEAD:Use cases/use_case_1.py
-=======
-from IPython.display import display, HTML
->>>>>>> 0c32df0c4bba91e04ce576bcc2b26865e06c0196:Use cases/case_1_1.py
 
 spark = SparkSession \
     .builder \
